@@ -19,27 +19,27 @@ CoinbaseScraperSpotRate.start();
 
 
 app.get('/', function(req, res) {
-	db.tweets.find(function(err, tweets) {
-		var allTweetsLength = tweets.length;
+  db.tweets.find(function(err, tweets) {
+    var allTweetsLength = tweets.length;
 
-		var positive = tweets.filter(function(tweet) {
-			return tweet.sentiment > 0;
-		}).length
+    var positive = tweets.filter(function(tweet) {
+      return tweet.sentiment > 0;
+    }).length
 
-		var negative = tweets.filter(function(tweet) {
-			return tweet.sentiment < 0;
-		}).length
+    var negative = tweets.filter(function(tweet) {
+      return tweet.sentiment < 0;
+    }).length
 
-		var neutral = tweets.filter(function(tweet) {
-			return tweet.sentiment === 0;
-		}).length
-		res.render('index.html', {
-			tweetsGotten: allTweetsLength,
-			negative: negative,
-			positive: positive,
-			neutral: neutral,
-		});
-	});
+    var neutral = tweets.filter(function(tweet) {
+      return tweet.sentiment === 0;
+    }).length
+    res.render('index.html', {
+      tweetsGotten: allTweetsLength,
+      negative: negative,
+      positive: positive,
+      neutral: neutral,
+    });
+  });
 });
 
 app.listen(app.get('port'), function() {

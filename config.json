@@ -1,41 +1,41 @@
 {
-	"dbInfo": {
-		"url": "btc",
-		"collections": ["tweets", "coinbaseBuy", "coinbaseSell", "coinbaseSpotRate"]
-	},
+  "dbInfo": {
+    "url": "btc",
+    "collections": ["tweets", "coinbaseBuy", "coinbaseSell", "coinbaseSpotRate"]
+  },
 
-	"apiInfo": {
-	  "consumer_key":    "IuBH1acAhv8dyqKvNpBlwQkLh",
-	  "consumer_secret": "lxlTDsA23Ax6Lrt53vsG2zt4v50FWBhKP9gajzdZUZ00C25BUe",
-	  "token":           "14070411-bl9FQVfRIFRrixIg6SRxosiFGgY8qt15sMAEcETNo",
-	  "token_secret":    "tV93qteEYlL702xsMnJwDYKSqegOeBrXtX0R12BJ3bpZG"
-	},
+  "apiInfo": {
+    "consumer_key":    "IuBH1acAhv8dyqKvNpBlwQkLh",
+    "consumer_secret": "lxlTDsA23Ax6Lrt53vsG2zt4v50FWBhKP9gajzdZUZ00C25BUe",
+    "token":           "14070411-bl9FQVfRIFRrixIg6SRxosiFGgY8qt15sMAEcETNo",
+    "token_secret":    "tV93qteEYlL702xsMnJwDYKSqegOeBrXtX0R12BJ3bpZG"
+  },
 
   "fcap": {
     "coinbase": 500
   },
 
   "negativeWords": [
-  	"worthless",
-  	"sell",
-  	"negative",
-  	"decrease",
-  	"loss",
-  	"lose",
-  	"down",
-  	"downwards"
+    "worthless",
+    "sell",
+    "negative",
+    "decrease",
+    "loss",
+    "lose",
+    "down",
+    "downwards"
   ],
-  "positiveWords": [ 
-  	"up",
-  	"upwards",
-  	"positive",
-  	"buy",
-  	"increase",
-  	"gain"
+  "positiveWords": [
+    "up",
+    "upwards",
+    "positive",
+    "buy",
+    "increase",
+    "gain"
   ],
 
   "btcKeywords": [
-  	"btc",
-  	"bitcoin"
+    "btc",
+    "bitcoin"
   ]
 }
