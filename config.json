@@ -1,7 +1,7 @@
 {
 	"dbInfo": {
 		"url": "btc",
-		"collections": ["tweets", "coinbaseBuy", "coinbaseSell", "coinbaseSpotRate"]
+		"collections": ["tweets", "coinbaseBuy", "coinbaseSell"]
 	},
 
 	"apiInfo": {

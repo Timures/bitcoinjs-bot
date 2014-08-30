@@ -1,5 +1,5 @@
 <html>
-<title>About - BitcoinJS-Bot</title>
+<title>Coinbase - BitcoinJS-Bot</title>
 <head>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -38,8 +38,8 @@ body {
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/about">About</a></li>
-            <li><a href="/coinbase">Coinbase</a></li>
+            <li><a href="/about">About</a></li>
+            <li class="active"><a href="/coinbase">Coinbase</a></li>
             <li><a href="/tweets">Twitter</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -49,7 +49,29 @@ body {
     <div class="container">
 
       <div class="starter-template">
-      	<h1>About BitcoinJS-Bot</h1>
+        <h1>Coinbase</h1>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Buy Orders</th>
+                  <th>Positive</th>
+                  <th>Negative</th>
+                  <th>Neutral</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= buyOrders %></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
     	</div>
 
     </div><!-- /.container -->
