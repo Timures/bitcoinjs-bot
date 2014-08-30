@@ -1,8 +1,6 @@
-var config       = require('./config');
-var TweetScraper = require('./lib/tweet_scraper');
-var CoinbaseScraperBuy = require('./lib/coinbase_scraper_buy');
-var CoinbaseScraperSell = require('./lib/coinbase_scraper_sell');
-var CoinbaseScraperSpotRate = require('./lib/coinbase_scraper_spotrate');
+var config          = require('./config');
+var TweetScraper    = require('./lib/tweet_scraper');
+var CoinbaseScraper = require('./lib/coinbase_scraper');
 
 var express = require('express');
 var app = express();
@@ -13,10 +11,11 @@ app.engine('html', require('ejs').renderFile);
 app.set('port', (process.env.PORT || 8000));
 
 TweetScraper.start();
-CoinbaseScraperBuy.start();
-CoinbaseScraperSell.start();
-CoinbaseScraperSpotRate.start();
-
+CoinbaseScraper.start({
+  buyPrice: true,
+  sellPrice: true,
+  spotRate: true
+})
 
 app.get('/', function(req, res) {
   db.tweets.find(function(err, tweets) {
@@ -33,6 +32,7 @@ app.get('/', function(req, res) {
     var neutral = tweets.filter(function(tweet) {
       return tweet.sentiment === 0;
     }).length
+
     res.render('index.html', {
       tweetsGotten: allTweetsLength,
       negative: negative,
