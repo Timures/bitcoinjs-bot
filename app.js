@@ -15,7 +15,7 @@ CoinbaseScraper.start({
   buyPrice:   true,
   sellPrice:  true,
   spotRate:   false,
-	historical: true
+  historical: true
 })
 
 app.get('/', function(req, res) {
