@@ -12,9 +12,10 @@ app.set('port', (process.env.PORT || 8000));
 
 TweetScraper.start();
 CoinbaseScraper.start({
-  buyPrice: true,
-  sellPrice: true,
-  spotRate: false
+  buyPrice:   true,
+  sellPrice:  true,
+  spotRate:   false,
+  historical: true
 })
 
 app.get('/', function(req, res) {
