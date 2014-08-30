@@ -4,7 +4,6 @@ var CoinbaseScraper = require('./lib/coinbase_scraper');
 
 var express = require('express');
 var app = express();
-var db = require("mongojs").connect(config.dbInfo.url, config.dbInfo.collections);
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
@@ -14,7 +13,7 @@ TweetScraper.start();
 CoinbaseScraper.start({
   buyPrice: true,
   sellPrice: true,
-  spotRate: true
+  spotRate: false
 })
 
 app.get('/', function(req, res) {
@@ -40,6 +39,25 @@ app.get('/', function(req, res) {
       neutral: neutral,
     });
   });
+});
+
+app.get('/coinbase', function(req, res) {
+	db.coinbaseBuy.find(function(err, coinbaseBuy) {
+		var allCoinbaseBuyLength = coinbaseBuy.length
+		res.render('coinbase.html', {
+			buyOrders: allCoinbaseBuyLength
+		})
+	});
+});
+
+app.get('/tweets', function(req, res) {
+	db.tweets.find(function(err, tweets) {
+		res.render('tweets.html');
+	});
+});
+
+app.get('/about', function(req, res) {
+	res.render('about.html');
 });
 
 app.listen(app.get('port'), function() {
