@@ -1,5 +1,5 @@
 <html>
-<title>About - BitcoinJS-Bot</title>
+<title>Spot Rate - Coinbase - BitcoinJS-Bot</title>
 <head>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -39,8 +39,15 @@ body {
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/about">About</a></li>
-            <li><a href="/coinbase">Coinbase</a></li>
+            <li class="dropdown active">
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown">Coinbase <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/coinbaseBuy">Buy Orders</a></li>
+                <li><a href="/coinbaseSell">Sell Orders</a></li>
+                <li class="active"><a href="coinbaseSpotRate">Spot Rate</a></li>
+                <li><a href="/coinbaseHistorical">Historical</a></li>
+              </ul>
+            </li>
             <li><a href="/tweets">Twitter</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -50,7 +57,27 @@ body {
     <div class="container">
 
       <div class="starter-template">
-      	<h1>About BitcoinJS-Bot</h1>
+        <h1>Spot Rate - Coinbase</h1>
+        <div class="row">
+          <div class="col-md-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Received</th>
+                  <th>Amount</th>
+                  <th>Currency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= spotRateOrders %></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
     	</div>
 
     </div><!-- /.container -->
