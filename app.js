@@ -6,9 +6,9 @@ var db = require("mongojs").connect(config.dbInfo.url, config.dbInfo.collections
 var express = require('express');
 var app = express();
 
-// app.set('views', __dirname + '/views');
 app.set('front', __dirname + '/front');
 app.engine('html', require('ejs').renderFile);
+app.engine('css', require('ejs').renderFile);
 app.set('port', (process.env.PORT || 8000));
 
 TweetScraper.start();
@@ -19,55 +19,20 @@ CoinbaseScraper.start({
   historical: true
 })
 
-/**
 app.get('/tweets', function(req, res) {
-  db.tweets.find(function(err, tweets) {
-    var allTweetsLength = tweets.length;
-
-    var positive = tweets.filter(function(tweet) {
-      return tweet.sentiment > 0;
-    }).length
-
-    var negative = tweets.filter(function(tweet) {
-      return tweet.sentiment < 0;
-    }).length
-
-    var neutral = tweets.filter(function(tweet) {
-      return tweet.sentiment === 0;
-    }).length
-
-    res.render('tweets.html', {
-      tweetsGotten: allTweetsLength,
-      negative: negative,
-      positive: positive,
-      neutral: neutral,
-    });
-  });
-});
-
-app.get('/', function(req, res) {
-	db.tweets.find(function(err, tweets) {
-		res.render('index.html');
-	});
-});
-**/
-app.get('/tweets', function(req, res) {
-  db.tweets.find(function(err, tweets) {
+  db.tweets.find( {}, { limit : 1000 }, function(err, tweets) {
     res.json(tweets);
   });
 });
 
 app.get('/', function(req, res) {
-  db.tweets.find(function(err, tweets) {
-  res.render('../front/index.html');
-  });
+  res.render('../front/twitter.html');
 });
 
-app.get('/about', function(req, res) {
-	res.render('about.html', {
-
-	});
+app.get('/stylesheet.css', function(req, res) {
+  res.render('../front/stylesheet.css');
 });
+
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:", app.get('port'));
