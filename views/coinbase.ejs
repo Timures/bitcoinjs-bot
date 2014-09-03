@@ -1,0 +1,104 @@
+<html>
+<title>BitcoinJS-Bot</title>
+<head>
+
+<% include ./partials/head %>
+
+<script>
+$.getJSON("http://localhost:8000/coinbaseHistorical", function(coinbaseHist) {
+  var obj = []
+  obj = coinbaseHist;
+
+  var tbl=$("<table/>").attr("id","mytable").attr("class","table table-striped");
+  var tableHeading = "<tr><th>Date</th><th>Price</th></tr>";
+
+  $("#hist").append(tbl);
+  $("#mytable").append(tableHeading);
+    for(var i=0;i<obj.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ new Date(obj[i]["date"]) +"</td>";
+      var td2="<td>"+ obj[i]["price"] +"</td>";
+      
+     $("#mytable").append(tr+td1+td2+tr2); }
+});
+
+$.getJSON("http://localhost:8000/coinbaseBuy", function(coinbaseBuy) {
+  var obj = []
+  obj = coinbaseBuy;
+
+  var tbl=$("<table/>").attr("id","mytable2").attr("class","table table-striped");
+  var tableHeading = "<tr><th>Buy</th></tr>";
+
+  $("#buy").append(tbl);
+  $("#mytable2").append(tableHeading);
+    for(var i=0;i<obj.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ obj[i]["amount"] +"</td>";
+
+     $("#mytable2").append(tr+td1+tr2); }
+});
+
+$.getJSON("http://localhost:8000/coinbaseSell", function(coinbaseSell) {
+  var obj = []
+  obj = coinbaseSell;
+
+  var tbl=$("<table/>").attr("id","mytable3").attr("class","table table-striped warning");
+  var tableHeading = "<tr><th>Sell</th></tr>";
+
+  $("#sell").append(tbl);
+  $("#mytable3").append(tableHeading);
+    for(var i=0;i<obj.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ obj[i]["amount"] +"</td>";
+
+     $("#mytable3").append(tr+td1+tr2); }
+});
+
+$.getJSON("http://localhost:8000/coinbaseSpotRate", function(coinbaseSpotRate) {
+  var obj = []
+  obj = coinbaseSpotRate;
+
+  var tbl=$("<table/>").attr("id","mytable4").attr("class","table table-striped");
+  var tableHeading = "<tr><th>SpotRate</th></tr>";
+
+  $("#spotrate").append(tbl);
+  $("#mytable4").append(tableHeading);
+    for(var i=0;i<obj.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ obj[i]["amount"] +"</td>";
+
+     $("#mytable4").append(tr+td1+tr2); }
+});
+</script>
+</head>
+<body>
+
+<header>
+  <% include ./partials/header %>
+</header>
+
+<div class="container">
+  <div class="row row-fluid">
+    <div class="col-md-4"><h3>Historical Prices</h3><div id="hist"></div></div>
+    <div class="col-md-4 col-md-offset-2"><h3>Real Time</h3>
+      <div class="col-md-2"><div id="buy"></div></div>
+      <div class="col-md-2"><div id="sell"></div></div>
+      <div class="col-md-2"><div id="spotrate"></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <% include ./partials/footer %>
+</footer>
+
+</body>
+</html>
