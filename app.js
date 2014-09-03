@@ -6,7 +6,8 @@ var db = require("mongojs").connect(config.dbInfo.url, config.dbInfo.collections
 var express = require('express');
 var app = express();
 
-app.set('views', __dirname + '/views');
+// app.set('views', __dirname + '/views');
+app.set('front', __dirname + '/front');
 app.engine('html', require('ejs').renderFile);
 app.set('port', (process.env.PORT || 8000));
 
@@ -18,6 +19,7 @@ CoinbaseScraper.start({
   historical: true
 })
 
+/**
 app.get('/tweets', function(req, res) {
   db.tweets.find(function(err, tweets) {
     var allTweetsLength = tweets.length;
@@ -43,68 +45,22 @@ app.get('/tweets', function(req, res) {
   });
 });
 
-app.get('/coinbaseBuy', function(req, res) {
-	db.coinbaseBuy.find(function(err, coinbaseBuy) {
-		var allCoinbaseBuyLength = coinbaseBuy.length
-
-    var last10Buy = db.coinbaseBuy.find().sort('amount').limit(10).skip(0);
-
-		res.render('coinbaseBuy.html', {
-			buyOrders: allCoinbaseBuyLength,
-      last10: last10Buy
-		})
-	});
-});
-
-app.get('/coinbaseSell', function(req, res) {
-  db.coinbaseSell.find(function(err, coinbaseSell) {
-    var allCoinbaseSellLength = coinbaseSell.length;
-
-    res.render('coinbaseSell.html', {
-      sellOrders: allCoinbaseSellLength
-    })
-  });
-});
-
-app.get('/coinbaseSpotRate', function(req, res) {
-  db.coinbaseSpotRate.find(function(err, coinbaseSpotRate) {
-    var allCoinbaseSpotRateLength = coinbaseSpotRate.length
-    res.render('coinbaseSpotRate.html', {
-      spotRateOrders: allCoinbaseSpotRateLength
-    })
-  });
-});
-
-app.get('/coinbaseHistorical', function(req, res) {
-  db.coinbaseHistorical.find(function(err, coinbaseHistorical) {
-    var allCoinbaseHistoricalLength = coinbaseHistorical.length
-    res.render('coinbaseHistorical.html', {
-      historicalOrders: allCoinbaseHistoricalLength
-    })
-  });
-});
-
 app.get('/', function(req, res) {
 	db.tweets.find(function(err, tweets) {
 		res.render('index.html');
 	});
 });
-
-app.get('/coinbase', function(req, res) {
-	db.coinbaseBuy.find(function(err, coinbaseBuy) {
-		var allCoinbaseBuyLength = coinbaseBuy.length
-		res.render('coinbase.html', {
-			buyOrders: allCoinbaseBuyLength
-		})
-	});
+**/
+app.get('/tweets', function(req, res) {
+  db.tweets.find(function(err, tweets) {
+    res.json(tweets);
+  });
 });
 
-app.get('/tweets', function(req, res) {
-	db.tweets.find(function(err, tweets) {
-		res.render('tweets.html', {
-
-		});
-	});
+app.get('/', function(req, res) {
+  db.tweets.find(function(err, tweets) {
+  res.render('../front/index.html');
+  });
 });
 
 app.get('/about', function(req, res) {
