@@ -7,3 +7,9 @@ body {
 table {
   font-size: 12px;
 }
+button.toggle1 {
+	position: absolute;
+	top: 12px;
+	right: 15px;
+	z-index: 9999;
+}

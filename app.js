@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.engine('css', require('ejs').renderFile);
+app.engine('js', require('ejs').renderFile);
 app.set('port', (process.env.PORT || 8000));
 
 // Startup modules for Coinbase and Twitter
@@ -19,7 +20,7 @@ CoinbaseScraper.start({
   sellPrice:  true,
   spotRate:   true,
   historical: true
-})
+});
 
 app.get('/', function(req, res) {
   res.render('./index');
@@ -69,6 +70,10 @@ app.get('/coinbase', function(req, res) {
 
 app.get('/stylesheet.css', function(req, res) {
   res.render('../views/stylesheet.css');
+});
+
+app.get('/twitterJS.js', function(req, res) {
+  res.render('../views/twitterJS.js');
 });
 
 app.listen(app.get('port'), function() {

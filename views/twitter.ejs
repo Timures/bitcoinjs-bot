@@ -4,7 +4,7 @@
 
 <% include ./partials/head %>
 
-<script>
+<script type="text/javascript">
 $.getJSON("http://localhost:8000/tweets", function(tweets) {
   var obj = []
   obj = tweets;
@@ -37,21 +37,100 @@ $.getJSON("http://localhost:8000/tweets", function(tweets) {
       var td4="<td><a href='https://twitter.com/"+ obj[i]["apiData"]["user"]["screen_name"] +"/status/"+ obj[i]["apiData"]["id_str"] + "'>"+ obj[i]["apiData"]["text"] +"</a></td>";
       var td5="<td>"+ obj[i]["sentiment"] +"</td>";
       
-     $("#mytable").append(tr+td1+td2+td3+td4+td5+tr2); }
+     $("#mytable").append(tr+td1+td2+td3+td4+td5+tr2).hide().fadeIn(150); }
+});
+
+$.getJSON("http://localhost:8000/coinbaseBuy", function(coinbaseBuy) {
+  var objBuy = []
+  objBuy = coinbaseBuy;
+
+  var tblBuy=$("<table/>").attr("id","mytableBuy").attr("class","table table-striped table-coinbase");
+  var tableHeadingBuy = "<tr><th>Buy</th></tr>";
+
+  $("#buy").append(tblBuy);
+  $("#mytableBuy").append(tableHeadingBuy);
+    for(var i=0;i<objBuy.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ objBuy[i]["amount"] +"</td>";
+
+     $("#mytableBuy").append(tr+td1+tr2).hide().fadeIn(150); }
+});
+
+$.getJSON("http://localhost:8000/coinbaseSell", function(coinbaseSell) {
+  var objSell = []
+  objSell = coinbaseSell;
+
+  var tblSell=$("<table/>").attr("id","mytableSell").attr("class","table table-striped warning table-coinbase");
+  var tableHeadingSell = "<tr><th>Sell</th></tr>";
+
+  $("#sell").append(tblSell);
+  $("#mytableSell").append(tableHeadingSell);
+    for(var i=0;i<objSell.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ objSell[i]["amount"] +"</td>";
+
+     $("#mytableSell").append(tr+td1+tr2).hide().fadeIn(150); }
+
+});
+
+$.getJSON("http://localhost:8000/coinbaseSpotRate", function(coinbaseSpotRate) {
+  var objSpotRate = []
+  objSpotRate = coinbaseSpotRate;
+
+  var tblSpotRate=$("<table/>").attr("id","mytableSpotRate").attr("class","table table-striped table-coinbase");
+  var tableHeadingSpotRate = "<tr><th>SpotRate</th></tr>";
+
+  $("#spotrate").append(tblSpotRate);
+  $("#mytableSpotRate").append(tableHeadingSpotRate);
+    for(var i=0;i<objSpotRate.length;i++) {
+
+      var tr="<tr>";
+      var tr2="</tr>";
+      var td1="<td>"+ objSpotRate[i]["amount"] +"</td>";
+
+      $("#mytableSpotRate").append(tr+td1+tr2).hide().fadeIn(150); }
+
+  $(document).on("click", ".toggle1", function(){ location.reload(true); });
+
 });
 </script>
+
 </head>
 <body>
+
+<button class="toggle1">Refresh</button>
 
 <header>
   <% include ./partials/header %>
 </header>
-
-<div id="name"></div>
-
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-10" style="padding:0">
+  </div>
+  <div class="col-md-2" style="padding:0">
+     
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10" style="padding:0">
+    <div id="name"></div>
+  </div>
+  <div class="col-md-2" style="padding:0">
+      <div class="col-md-4" style="padding:0"><div id="buy"></div></div>
+      <div class="col-md-4" style="padding:0"><div id="sell"></div></div>
+      <div class="col-md-4" style="padding:0"><div id="spotrate"></div></div>
+    </div>
+</div>
+</div>
 <footer>
   <% include ./partials/footer %>
 </footer>
+<script>
 
+</script>
 </body>
 </html>

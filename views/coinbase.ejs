@@ -4,7 +4,7 @@
 
 <% include ./partials/head %>
 
-<script>
+<script type="text/javascript">// <![CDATA[
 $.getJSON("http://localhost:8000/coinbaseHistorical", function(coinbaseHist) {
   var obj = []
   obj = coinbaseHist;
@@ -77,7 +77,7 @@ $.getJSON("http://localhost:8000/coinbaseSpotRate", function(coinbaseSpotRate) {
 
      $("#mytable4").append(tr+td1+tr2); }
 });
-</script>
+// ]]></script>
 </head>
 <body>
 
